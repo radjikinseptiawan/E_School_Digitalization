@@ -1,2 +1,2 @@
-**E-School-Digitalization
+## E-School-Digitalization
 Website edukasi berbasis Laravel dan ReactJS
