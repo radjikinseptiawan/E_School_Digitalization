@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LessonCardRow() {
+export default function LessonCardRow({onClicked}:{onClicked:()=>void}) {
   return (
     <>
       <div className="p-2 mx-auto bg-white w-full max-w-3xl rounded-md shadow-2xl flex flex-col sm:flex-row items-center sm:items-start gap-5">
@@ -11,19 +11,21 @@ export default function LessonCardRow() {
           alt="Fisika"
         />
 
-        <div className="flex-1 text-center sm:text-left">
-          <h1 className="font-extrabold text-xl my-3 text-blue-600">Fisika</h1>
+        <div className="flex-1 text-left sm:text-left">
+          <h1 className="font-extrabold md:text-xl text-lg text-black">Web Developer</h1>
+          <h1 className="font-extrabold md:text-md text-sm text-black">fundamental</h1>
           <hr />
-          <p className="mt-3 text-md">Muhammad Hadi Kusuma</p>
-          <p className="text-md">Selasa 09:30 - 11:30</p>
+          <p className="mt-3 md:text-md text-sm text-gray-500">08 Agustus 2025 - 14 Agustus 2025</p>
+          <p className="md:text-md text-sm text-gray-500">Online</p>
+          <p className="md:text-md text-sm text-gray-500">Google</p> 
         </div>
 
         <div className="flex sm:justify-end w-full sm:w-auto">
           <button
-            className="my-3 text-md bg-blue-600 px-5 py-2 rounded-md text-white font-semibold w-full sm:w-auto"
-            onClick={() => {}}
+            className="my-3 text-md bg-[#13A936] px-5 py-2 rounded-md text-white font-semibold w-full sm:w-auto"
+            onClick={onClicked}
           >
-            Masuk Kelas
+            Akses Kelas
           </button>
         </div>
 

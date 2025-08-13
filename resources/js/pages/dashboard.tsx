@@ -1,106 +1,50 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import LessonCardGrid from '@/components/ui/LessonCard/LessonCardGrid'
+import DashboardCount from '@/components/ui/count'
 import LessonCardRow from '@/components/ui/LessonCard/LessonCardRow'
-import React, { useState } from 'react'
+import DashboardProfile from '@/components/ui/profile/dashboardProfile'
+import AppLayout from '@/layouts/app-layout'
+import { Head } from '@inertiajs/react'
 
 export default function dashboard() {
-  const [row,setRow] = useState(false)
-
   return (
-    <>
-    <div className='flex'>
-    <div className='bg-white border w-xl rounded-md'>
-        <div className='flex flex-col my-10 justify-center items-center gap-2'>
-          <img src="https://i.pinimg.com/736x/bf/ee/b3/bfeeb37f7ab8170faf7abf48c6c38a24.jpg" width={180} height={20} className='rounded-full' alt="" />
-          <h1 className='text-2xl font-bold'>Nindya Intan Lestari</h1>
-          <p className='text-gray-500'>Female</p>
-         </div>
-
-      <div>
-        <p>NISN : 312410082</p>
-        <p>NIS: 202110085</p>
-        <p>Status : Active</p>
-      </div>
-
-      <div>
-        <p>Nama Wali : Syarif Jiadah</p>
-        <p>Nomor Telpon Orang Tua : 087883034068</p>
-        <p>Agama : Islam</p>
-        <p>Jenis Kelamin: Perempuan</p>
-        <p>Anak ke : 1</p>
-        <p>Status Dalam Keluarga: Anak Kandung</p>
-      </div>
-
-      <div>
-        <h1>Alamat Siswa</h1>
-        <p>Nama Jalan/Gang : Jalan Pitara Raya Gang Damai</p>
-        <p>Kelurahan: Rangkapan Jaya</p>
-        <p>Kecamatan: Pancoran Mas</p>
-        <p>Kota : Depok</p>
-        <p>Kode Pos: 16435</p>
-      </div>
-
-      <div>
-      <h1>Di Terima Di Sekola h ini</h1>
-      <p>Tanggal Masuk : 06 Juni 2023</p>
-      <p>Kelas : X MIPA 3</p>
-      <p>Semester : 1</p> 
-    </div>
-    
-    <div>
-      <h1>Sekolah Asal</h1>
-      <p>Nama Sekolah: MTS Sirojul Athfal</p>
-      <p>Alamat Sekolah : -</p>
-    </div>
-    
-    <div>
-      <h1>STTB dan SHUN SMP/MTs</h1>
-      <p>Nomor STTB : MTs-13 100178591</p>
-      <p>Nomor SHUN : -</p>
-    </div>
-
-    <div>
-      <h1>Orang Tua</h1>
-      <p>Ayah: Sadikin</p>
-      <p>Ibu: Mumun Maemunah</p>
-      <p>Alamat Orang tua: Jl pitara raya gang damai RT RW, Rangkapan jaya kecamatan pancoran emas</p>  
-    </div>
-
-    <div>
-      <h1>Pekerjaan Orang Tua</h1>
-      <p>Ayah: Karyawan Swasta</p>
-      <p>Ibu: Tidak Bekerja</p>
-    </div>
-    </div>
-    
-    
-    <div>
-      <h1 className='text-xl md:text-2xl lg:text-3xl xl:text-5xl font-bold text-center underline my-2'>Jadwal Pelajaran</h1>
-        <button className='p-4 bg-gray-200 m-2 rounded-xl' onClick={()=>setRow(!row)}>{row ? 'grid':'row'}</button>
-        <div className={row ? 'border-t-2 grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-1' : 'flex border-t-2 flex-col gap-1'}>
-           {
-            row ?
-            <>
-            <LessonCardGrid/>
-            <LessonCardGrid/>
-            <LessonCardGrid/>
-            <LessonCardGrid/>
-            <LessonCardGrid/>
-            <LessonCardGrid/>
-            </>
-            :
-           <>
-            <LessonCardRow/>
-            <LessonCardRow/>
-            <LessonCardRow/>
-            <LessonCardRow/>
-            <LessonCardRow/>
-            <LessonCardRow/>
-           </>
-           }
+    <AppLayout>
+      <Head title="Dashboard"/>
+      <div className="flex flex-col-reverse justify-center md:flex-row gap-6 mt-10 md:mt-20 px-4">
+        
+        <div className="w-full max-w-2xl">
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold mb-4">Kelas Diikuti</h1>
+          <div className="bg-[#EEEEEE] flex flex-col gap-2 rounded-2xl p-4 sm:p-5 h-auto md:h-11/12 overflow-auto">
+            <LessonCardRow onClicked={() => window.location.href = "/class-lobby"} />
+            <LessonCardRow onClicked={() => window.location.href = "/class-lobby"} />
+            <LessonCardRow onClicked={() => window.location.href = "/class-lobby"} />
+            <LessonCardRow onClicked={() => window.location.href = "/class-lobby"} />
+          </div>
         </div>
-    </div>
-    </div>
-    </>
-)
+
+        <div className="w-full max-w-2xl">
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold mb-4">Profile</h1>
+          <div className="border-[#EEEEEE] rounded-2xl border-2 h-auto md:h-11/12">
+            
+            <DashboardProfile media="userDefaultProfile.jpg" username="Radjikin Septiawan" />
+
+            <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-10 justify-center my-8 md:my-12">
+              <DashboardCount title="Kelas Selesai" count="6" />
+              <DashboardCount title="Sertifikasi Didapat" count="10" />
+              <DashboardCount title="Seminar Diikuti" count="4" />
+            </div>
+
+            <div className="flex p-4 sm:p-6 md:p-10 justify-end">
+              <button
+                onClick={() => window.location.href = "/profile"}
+                className="bg-[#13A936] px-4 sm:px-6 py-2 sm:py-3 rounded-md text-white font-bold text-sm sm:text-base"
+              >
+                Profile
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </AppLayout>
+  )
 }

@@ -17,6 +17,18 @@ Route::get('dashboard',function(){
     return Inertia::render('dashboard');
 })->name('dashboard');
 
+Route::get('class-lobby',function(){
+    return Inertia::render('class-lobby/class');
+})->name("class-lobby");
+
+Route::get('materi',function(){
+    return Inertia::render('class-lobby/materi');
+})->name('materi');
+
+
+Route::get('profile',function(){
+    return Inertia::render(('profile'));
+})->name('profile');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
