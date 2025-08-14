@@ -1,3 +1,4 @@
+import { router } from '@inertiajs/react';
 import React, { useState } from 'react'
 
 export default function Navigation() {
@@ -47,10 +48,10 @@ function FirstSectionNavigation() {
   return (
     <div className="bg-gray-200 rounded-md">
       {[
-        { title: 'Dashboard', href: '/dashboard' },
-        { title: 'Pengumuman', href: '/pengumuman' },
-        { title: 'Profile', href: '/profile' },
-        { title: 'Kelas', href: '/kelas' }
+        { title: 'Dashboard', href: '/dashboard', action: ()=>{} },
+        { title: 'Pengumuman', href: '/pengumuman', action: ()=>{} },
+        { title: 'Profile', href: '/profile', action:()=>{} },
+        { title: 'Kelas', href: '/kelas', action:()=>{}}
       ].map((item, index) => (
         <li key={index}>
           <a href={item.href}>
@@ -65,17 +66,21 @@ function FirstSectionNavigation() {
 }
 
 function SecondSectionNavigation() {
+  const logoutAccount = (e : React.MouseEvent)=>{
+    e.preventDefault();
+    router.post('/logout')
+  }
   return (
     <div className="bg-gray-200 rounded-md mt-3">
       {[
-        { title: 'Cari Pelatihan', href: '/pelatihan' },
-        { title: 'Magang & Lowongan Kerja', href: '/maganglowongankerja' },
-        { title: 'Galeri Sertifikasi', href: '/galeri' },
-        { title: 'Keluar', href: '/login' }
+        { title: 'Cari Pelatihan', href: '/pelatihan', action: ()=>{} },
+        { title: 'Magang & Lowongan Kerja', href: '/maganglowongankerja', action: ()=>{} },
+        { title: 'Galeri Sertifikasi', href: '/galeri',action:()=>{} },
+        { title: 'Keluar', href: '/login', action:logoutAccount }
       ].map((item, index) => (
         <li key={index}>
           <a href={item.href}>
-            <div className="p-3 text-base sm:text-lg hover:bg-yellow-400 hover:rounded-md hover:underline cursor-pointer">
+            <div onClick={item.action} className="p-3 text-base sm:text-lg hover:bg-yellow-400 hover:rounded-md hover:underline cursor-pointer">
               {item.title}
             </div>
           </a>
