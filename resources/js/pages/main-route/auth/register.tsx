@@ -6,6 +6,8 @@ import LoginRegisterInput from '@/components/ui/input/loginRegister';
 import AppLayoutUnSigin from '@/layouts/app-layout-unSigin';
 import ErrorNotification from '@/components/ux/errorNotification';
 import React from 'react';
+import ButtonInfo from '@/components/ui/buttonInfo';
+import { LoaderCircle } from 'lucide-react';
 
 
 export default function Register() {
@@ -35,8 +37,10 @@ export default function Register() {
                        <LoginRegisterInput changed={(e)=>{setData('password_confirmation',e.target.value)}} to={'confirm_password'} title={'Confirm Password'} types={'password'} />
 
                 </div>
-                    <button className='bg-[#13A936] p-2 text-white font-bold rounded-md'> {processing ? 'Proses...' : 'Daftar'}</button>
+                <ButtonInfo/>
             </div>
+                      <button className='bg-[#13A936] p-2 text-white font-bold rounded-md'>{processing ? <LoaderCircle/> : "Masuk"}</button>
+          
             </form>
             <p className='text-center'>Sudah punya akun? klik <a href="/login" className='text-yellow-500 underline'>disini</a></p>
             <hr />

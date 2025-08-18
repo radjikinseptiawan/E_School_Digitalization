@@ -1,8 +1,10 @@
-import React from 'react'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react'
 import DashboardProfile from '../dashboardProfile'
 import DashboardCount from '../../count'
 
 export default function ShortAccountInfo() {
+  const [isAvailable,setIsAvailable] = useState<boolean>(false)
   return (
     <div className="mt-10 sm:mt-20">
       <div className="min-h-96 w-full max-w-2xl mx-auto px-4">
@@ -10,9 +12,9 @@ export default function ShortAccountInfo() {
         <DashboardProfile media="userDefaultProfile.jpg" username="Radjikin Septiawan" />
         
         <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-10 justify-center my-10 sm:my-20">
-          <DashboardCount title="Kelas Selesai" count="6" />
-          <DashboardCount title="Sertifikasi Didapat" count="10" />
-          <DashboardCount title="Seminar Diikuti" count="4" />
+          <DashboardCount title="Kelas Selesai" count={isAvailable ? "6":"0"} />
+          <DashboardCount title="Sertifikasi Didapat" count={isAvailable ? "10":"0"} />
+          <DashboardCount title="Seminar Diikuti" count={isAvailable ? "4":"0"} />
         </div>
 
         <div className="text-center italic text-sm sm:text-base">

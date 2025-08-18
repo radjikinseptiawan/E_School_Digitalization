@@ -1,11 +1,11 @@
 import React from 'react'
 type CardDataType = {
-    title : string;
-    level: string;
-    date: string;
-    platform: string;
-    penyelenggara: string;
-    deskripsi:string
+    title : string | undefined;
+    level: string | undefined;
+    date: string | undefined;
+    platform: string | undefined;
+    penyelenggara: string | undefined;
+    deskripsi:string | undefined
 }
 export default function DescriptionCardClassLobby({title,level,date,platform,penyelenggara,deskripsi}:CardDataType) {
   return (

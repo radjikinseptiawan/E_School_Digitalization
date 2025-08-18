@@ -8,7 +8,7 @@ export default function Navigation() {
     <>
       <div className="bg-[#177E23] z-10 fixed top-0 w-full p-2 flex items-center">
         <button className="p-2" onClick={() => setOpen(true)}>
-          <img src="menu 1.png" width={35} alt="menu" />
+          <img src="/menu 1.png" width={35} alt="menu" />
         </button>
       </div>
 
@@ -28,7 +28,7 @@ export default function Navigation() {
           <h1 className="text-2xl font-bold">Menu</h1>
           <button onClick={() => setOpen(false)}>
             <img
-              src="x (2).svg"
+              src="/x (2).svg"
               alt="close"
               className="border-2 border-red-600 rounded-2xl bg-red-600 w-8 h-8"
             />
@@ -73,7 +73,7 @@ function SecondSectionNavigation() {
   return (
     <div className="bg-gray-200 rounded-md mt-3">
       {[
-        { title: 'Cari Pelatihan', href: '/pelatihan', action: ()=>{} },
+        { title: 'Cari Pelatihan', action: ()=>{console.log("tombol cari pelatihan ditekan")} },
         { title: 'Magang & Lowongan Kerja', href: '/maganglowongankerja', action: ()=>{} },
         { title: 'Galeri Sertifikasi', href: '/galeri',action:()=>{} },
         { title: 'Keluar', href: '/login', action:logoutAccount }

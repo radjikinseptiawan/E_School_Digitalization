@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LessonCardRow({onClicked}:{onClicked:()=>void}) {
+export default function LessonCardRow({onClicked,title,level,tanggalPelaksanaan,metodePelaksanaan,penyelenggara}:{title:string,level:string,tanggalPelaksanaan:string,metodePelaksanaan:string,penyelenggara:string,onClicked:()=>void}) {
   return (
     <>
       <div className="p-2 mx-auto bg-white w-full max-w-3xl rounded-md shadow-2xl flex flex-col sm:flex-row items-center sm:items-start gap-5">
@@ -12,12 +12,12 @@ export default function LessonCardRow({onClicked}:{onClicked:()=>void}) {
         />
 
         <div className="flex-1 text-left sm:text-left">
-          <h1 className="font-extrabold md:text-xl text-lg text-black">Web Developer</h1>
-          <h1 className="font-extrabold md:text-md text-sm text-black">fundamental</h1>
+          <h1 className="font-extrabold md:text-xl text-lg text-black">{title}</h1>
+          <h1 className="font-extrabold md:text-md text-sm text-black">{level}</h1>
           <hr />
-          <p className="mt-3 md:text-md text-sm text-gray-500">08 Agustus 2025 - 14 Agustus 2025</p>
-          <p className="md:text-md text-sm text-gray-500">Online</p>
-          <p className="md:text-md text-sm text-gray-500">Google</p> 
+          <p className="mt-3 md:text-md text-sm text-gray-500">{tanggalPelaksanaan}</p>
+          <p className="md:text-md text-sm text-gray-500">{metodePelaksanaan}</p>
+          <p className="md:text-md text-sm text-gray-500">{penyelenggara}</p> 
         </div>
 
         <div className="flex sm:justify-end w-full sm:w-auto">
