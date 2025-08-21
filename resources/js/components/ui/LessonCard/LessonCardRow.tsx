@@ -18,8 +18,6 @@ export default function LessonCardRow({onClicked,title,level,tanggalPelaksanaan,
           <p className="mt-3 md:text-md text-sm text-gray-500">{tanggalPelaksanaan}</p>
           <p className="md:text-md text-sm text-gray-500">{metodePelaksanaan}</p>
           <p className="md:text-md text-sm text-gray-500">{penyelenggara}</p> 
-        </div>
-
         <div className="flex sm:justify-end w-full sm:w-auto">
           <button
             className="my-3 text-md bg-[#13A936] px-5 py-2 rounded-md text-white font-semibold w-full sm:w-auto"
@@ -29,6 +27,8 @@ export default function LessonCardRow({onClicked,title,level,tanggalPelaksanaan,
           </button>
         </div>
 
+
+        </div>
       </div>
     </>
   );

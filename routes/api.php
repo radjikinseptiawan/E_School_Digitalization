@@ -16,6 +16,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+
 Route::post("/tambah-kelas",[HandleClassController::class,"createClass"]);
 Route::get("/semua-kelas",[HandleClassController::class,"showAllClass"]);
 Route::get("/semua-kelas/{id}",[HandleClassController::class,"findOne"]);

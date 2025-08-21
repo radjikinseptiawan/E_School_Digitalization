@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Str;
 class Kelas extends Model
 {
     //
@@ -24,4 +24,18 @@ class Kelas extends Model
         "deskripsi",
         "photo_profile"
     ];
+
+    protected static function boot(){
+        parent::boot();
+
+        static::creating(function($model){
+            if(empty($model->kelas_id)){
+                $model->kelas_id = (string) Str::uuid();
+            }
+        });
+    }
+
+    protected $primaryKey = "kelas_id";
+    protected $keyType = "string";
+    public $incrementing = false;
 }

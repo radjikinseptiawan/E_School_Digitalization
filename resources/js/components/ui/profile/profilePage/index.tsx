@@ -3,13 +3,17 @@ import React, { useState } from 'react'
 import DashboardProfile from '../dashboardProfile'
 import DashboardCount from '../../count'
 
-export default function ShortAccountInfo() {
+type DataAccount = {
+  username:string
+}
+
+export default function ShortAccountInfo({username}:DataAccount) {
   const [isAvailable,setIsAvailable] = useState<boolean>(false)
   return (
     <div className="mt-10 sm:mt-20">
       <div className="min-h-96 w-full max-w-2xl mx-auto px-4">
         
-        <DashboardProfile media="userDefaultProfile.jpg" username="Radjikin Septiawan" />
+        <DashboardProfile media="userDefaultProfile.jpg" username={username} />
         
         <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-10 justify-center my-10 sm:my-20">
           <DashboardCount title="Kelas Selesai" count={isAvailable ? "6":"0"} />

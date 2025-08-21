@@ -23,6 +23,7 @@ Route::middleware([HandleAuthentication::class])->group(function(){
     Route::get("galeri",[HandleUserIdentification::class,"sertifikasi"])->name("sertifikasi");
 
     Route::get('profile',[HandleUserIdentification::class,"profile"])->name("profile");
+    Route::get("edit",[HandleUserIdentification::class,"profileEdit"])->name("edit");
 })->name("main-containt-pages");
 
 require __DIR__.'/settings.php';

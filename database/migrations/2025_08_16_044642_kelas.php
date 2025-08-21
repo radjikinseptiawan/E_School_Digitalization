@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kelas',function(Blueprint $table){
-            $table->id();
+            $table->uuid("kelas_id")->primary();
             $table->string("nama_kelas");
             $table->date("kelas_dimulai");
             $table->date("kelas_diakhiri");
@@ -32,9 +32,9 @@ return new class extends Migration
 
 
         Schema::create("list_peserta",function(Blueprint $table){
-            $table->id();
-            $table->foreignId("user_id")->constrained("users")->onDelete("cascade");
-            $table->foreignID("kelas_id")->constrained("kelas")->onDelete("cascade");
+            $table->uuid("peserta_id")->primary();
+            $table->foreignUuid("user_id")->constrained("users","user_id")->onDelete("cascade");
+            $table->foreignUuid("kelas_id")->constrained("kelas","kelas_id")->onDelete("cascade");
         });
     }
 

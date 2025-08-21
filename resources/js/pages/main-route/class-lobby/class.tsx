@@ -1,47 +1,28 @@
 import DescriptionCardClassLobby from '@/components/ui/class/lobby/description-card'
 import MediaDetailCard from '@/components/ui/class/lobby/media-detail-card/detail-card'
 import AppLayout from '@/layouts/app-layout'
-import { Head } from '@inertiajs/react'
-import React, { useEffect, useState } from 'react'
+import { Head, usePage } from '@inertiajs/react'
 
-export interface ClassData {
-  id: number;
-  nama_kelas: string;
-  kelas_dimulai: string; 
-  kelas_diakhiri: string;
-  penyelenggara_kelas: string;
-  aktifitas_pelatihan: string;
-  alur_seleksi: string;
-  level: string;
-  kouta: number;
-  sertifikasi: string;
-  lokasi_pelatihan: string;
-  zonasi: string;
-  deskripsi: string;
+type DataKelasType= {
+  alur_seleksi :string,
+  level:string,
+  sertifikasi:string,
+  lokasi_pelatihan:string,
+  aktifitas_pelatihan:string,
+  zonasi:string,
+  nama_kelas:string,
+  kelas_dimulai:string,
+  kelas_diakhiri:string,
+  kouta:number
+  penyelenggara_kelas:string,
+  deskripsi:string
 }
 
-export interface AddClassResponse {
-  message: string;
-  data: ClassData;
-}
-
-export default function ClassLobby({id}:{id:number}) {
-  const [kelas,setKelas] = useState<ClassData>();
-
-    const fetchKelasData = async ()=>{
-    const response = await fetch(`http://localhost:8000/api/semua-kelas/${id}`,{
-      method:"GET"
-    });
-
-    const data = await response.json();
-    setKelas(data.data)
+export default function ClassLobby() {
+  const {kelas} = usePage().props as unknown as {
+    kelas : DataKelasType
   }
 
-  useEffect(()=>{
-    fetchKelasData()
-  },[])
-
-  console.log(kelas)
   return (
     <AppLayout>
       <Head title='Class'/>

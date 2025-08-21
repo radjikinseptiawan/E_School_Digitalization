@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Students extends Model
 {
+        protected $primaryKey = "student_id";
+        public $keyType = "string";
         protected $table = "student_info";
 
         protected $fillable = [
@@ -20,15 +22,15 @@ class Students extends Model
         'NISN'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function user() : BelongsTo {
+        return $this->belongsTo(User::class,"user_id","user_id");
     }
 
     public function lastActivity(){
-        return $this->hashMany(LastActivity::class,"student_info_id");
+        return $this->hashMany(LastActivity::class,"student_info_id","student_id");
     }
 
     public function certification(){
-        return $this->BelongsTo(Certification::class, 'student_certification','student_info_id',"certification_id");
+        return $this->hashMany(Certification::class, 'student_certification','student_info_id',"certification_id");
     }
 }

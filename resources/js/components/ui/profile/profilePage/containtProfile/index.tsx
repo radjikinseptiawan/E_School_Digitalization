@@ -4,7 +4,17 @@ import LastActivity from './lastActivity'
 import LearningScore from './learningScore'
 import CertificationSection from './certificationSection'
 
-export default function ProfileContaint() {
+type DataAction = {
+  action: {
+    email: string | unknown | undefined,
+    username:string | unknown | undefined,
+    tanggalBergabung:string | unknown | undefined,
+    domisili: string | unknown | undefined,
+    nomorTelepon: string | unknown | undefined
+  }
+}
+
+export default function ProfileContaint({action}:DataAction) {
     const [width, setWidth] = useState<number>(window.innerWidth)
 
     useEffect(()=>{
@@ -15,7 +25,7 @@ export default function ProfileContaint() {
     console.log(width)
     return (
     <div className="mt-18 overflow-y-scroll w-full h-screen border-[#EEEEEE] border-2 p-4 md:p-8 shadow-2xl rounded-2xl">
-      <BiodataSection/>
+      <BiodataSection username={action.username} email={action.email} nomorTelepon={action.nomorTelepon} domisili={action.domisili} tanggalBergabung={action.tanggalBergabung}/>
       <LastActivity/>
       <LearningScore/>
       <CertificationSection/>

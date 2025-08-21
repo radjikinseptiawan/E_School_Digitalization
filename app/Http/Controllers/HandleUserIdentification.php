@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
+use App\Models\Students;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,9 +14,11 @@ class HandleUserIdentification extends Controller
     //
     function dashboard(){
         $data = Auth::user();
+        $kelas = Kelas::take(3)->get();
         return Inertia::render("dashboard",[
             "nama_lengkap" => $data->nama_lengkap,
-            "email" => $data->email
+            "email" => $data->email,
+            "kelas" => $kelas
         ]);
     }
 
@@ -22,13 +26,21 @@ class HandleUserIdentification extends Controller
         $data = Auth::user();
         return Inertia("main-route/profile/profile",[
             "nama_lengkap" => $data->nama_lengkap,
-            "email" => $data->email
+            "email" => $data->email,
+            "tanggalBergabung" => $data->created_at,
+            "profile" => $data->students
         ]);
     }
 
-    function classLobby($id){
+    function profileEdit(){
+        return Inertia("main-route/profile/profileEdit");
+    }
+
+    function classLobby($uuid){
+        $kelas = Kelas::where("kelas_id",$uuid)->firstorFail();
         return Inertia("main-route/class-lobby/class",[
-            'id' => $id
+            'kelas' => $kelas,
+            'user' => Auth::user()
         ]);
     }
 
@@ -41,7 +53,11 @@ class HandleUserIdentification extends Controller
     }
 
     function kelas(){
-        return inertia("main-route/kelas/kelas");
+    $kelas = Kelas::all();
+        return inertia("main-route/kelas/kelas",[
+            'kelas' => $kelas,
+            'user' => Auth::user()
+        ]);
     }
 
     function magangLowongan(){

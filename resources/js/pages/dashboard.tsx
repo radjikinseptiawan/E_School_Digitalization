@@ -11,30 +11,19 @@ import { useEffect, useState } from 'react'
 type DashboardCardType = {
   nama_kelas : string;
   level: string;
-  id:number;
+  kelas_id:string;
   kelas_dimulai:Date;
   kelas_diakhiri:Date;
   penyelenggara_kelas:string;
 }
 
 export default function dashboard() {
-  const {nama_lengkap} = usePage().props;
-  const [kelas, setKelas] = useState<DashboardCardType[]>([]);
-  const [isAvailable,setIsAvailable] = useState<boolean>(false)
-
-  const fetchKelasData = async ()=>{
-    const response = await fetch('http://localhost:8000/api/semua-kelas',{
-      method:"GET"
-    });
-
-    const data = await response.json();
-    setKelas(data.data)
-    setIsAvailable(true);
+  const {kelas, nama_lengkap} = usePage().props as unknown as {
+    kelas : DashboardCardType[],
+    nama_lengkap: string
   }
-
-  useEffect(()=>{
-    fetchKelasData();
-  },[]);
+  const isAvailable = kelas && kelas.length  > 0;
+  console.log(kelas)
   return (
     <AppLayout>
       <Head title="Dashboard"/>
@@ -44,11 +33,11 @@ export default function dashboard() {
           <h1 className="text-lg sm:text-xl md:text-2xl font-bold mb-4">Kelas Diikuti</h1>
           <div className="bg-[#EEEEEE] flex flex-col gap-2 rounded-2xl p-4 sm:p-5 h-auto md:h-[91%]">
           {
-            kelas &&
-            isAvailable ? 
+            
+            isAvailable && kelas.length !== 0 ? 
             kelas.map((item,index)=>(
             <LessonCardRow key={index++} 
-            onClicked={() => window.location.href = `/class-lobby/${item.id}`} 
+            onClicked={() => window.location.href = `/class-lobby/${item.kelas_id}`} 
             title={item?.nama_kelas}
             level={item?.level} 
             tanggalPelaksanaan={item?.kelas_dimulai + " " + item?.kelas_diakhiri} 
@@ -58,7 +47,7 @@ export default function dashboard() {
 
             :
 
-                      <div className='h-96 text-center flex-col flex justify-center align-middle items-center'>
+          <div className='h-96 text-center flex-col flex justify-center align-middle items-center'>
             <h1 className='text-3xl font-bold'>Belum ada kelas diikuti!</h1>
             <p className='text-gray-400'>Kerjakan modul-modul yang sudah kami sediakan!</p>
           </div>

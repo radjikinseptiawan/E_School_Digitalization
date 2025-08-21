@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -17,11 +17,31 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    protected $primaryKey = "user_id";
+    protected $keyType = "string";
+    protected $table = "users";
+    public $incrementing = false;
+
     protected $fillable = [
         'nama_lengkap',
         'email',
         'password',
     ];
+
+    public function getAuthIdentifierName()
+    {
+        return 'user_id';
+    }
+
+    protected static function boot(){
+        parent::boot();
+
+        static::creating(function($model){
+            if(empty($model->user_id)){
+                $model->user_id = (string) Str::uuid();
+            }
+        });
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -33,6 +53,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function student(){
+        return $this->hashOne(Students::class,"user_id","user_id");
+    }
     /**
      * Get the attributes that should be cast.
      *

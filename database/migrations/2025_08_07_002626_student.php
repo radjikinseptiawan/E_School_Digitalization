@@ -9,15 +9,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('student_info', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId("user_id")->constrained("users")->onDelete('cascade');
+            $table->uuid("student_id")->primary();
+            $table->foreignUuid("user_id")->constrained("users","user_id")->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('last_activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_info_id')
-                  ->constrained('student_info')
+            $table->foreignUuid('student_info_id')
+                  ->constrained('student_info',"student_id")
                   ->onDelete('cascade');
             $table->string("last_class_activity");
             $table->string("last_webinar_activity");
@@ -35,7 +35,7 @@ return new class extends Migration
 
         Schema::create('student_certifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_info_id')->constrained('student_info')->onDelete('cascade');
+            $table->foreignUuid('student_id')->constrained('student_info',"student_id")->onDelete('cascade');
             $table->foreignId('certification_id')->constrained('certifications')->onDelete('cascade');
             $table->timestamps();
         });
