@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import AppLayout from '@/layouts/app-layout'
 import { useForm, usePage } from '@inertiajs/react'
-import React from 'react'
+import React, { useRef } from 'react'
 
 
 type ProfileForm = {
@@ -11,33 +11,43 @@ type ProfileForm = {
   tanggal_lahir: string
   nama_lengkap: string
   email: string
-  password: string
 }
 export default function profileEdit() {
-   const { props } = usePage<any>() 
-  const user = props.profile || {} // ini data lama dari controller
- 
+  const refId = useRef<HTMLInputElement | null>(null)
+  const { props } = usePage<any>() 
+  const user = props.profile || {} 
   const {data , setData, processing, errors,put} = useForm<ProfileForm>({
-    nomor_telepon: user.nomor_telepon ||"",
+    nomor_telepon:user.nomor_telepon || "",
     domisili: user.domisili || "",
     tanggal_lahir: user.tanggal_lahir || "",
-    nama_lengkap:props.nama_lengkap || "",
-    email:props.email || "",
-    password:props.password || ""
+    nama_lengkap: props.data.nama_lengkap || "",
+    email: props.data.email|| "",
   })
   const submit = (e:React.FormEvent)=>{
     e.preventDefault()
-    put(`/edit-data/${props.user_id}`)
+    put(`/profile-edit/${user.user_id}`)
   }
 
-  console.log(user)
+  const handleDivClick = ()=>{
+    refId.current?.click()
+  }
 return (
 <AppLayout>
     <div className='my-20 p-4'>
       <form action="" className='flex flex-col gap-4' onSubmit={submit}>
       <div className='flex gap-8 justify-center'>
-      <div>
-      <img src="../../userDefaultProfile.jpg" width={200} className='rounded-full mt-20 cursor-pointer hover:bg-black/50' alt="" />
+      <div onClick={handleDivClick}>
+      <input 
+      accept='
+      image/jpg, 
+      image/png, 
+      image/jpeg' 
+      type="file" 
+      className='hidden' 
+      ref={refId} />
+      <img
+       src="../../userDefaultProfile.jpg" 
+       width={200} className='rounded-full mt-20 cursor-pointer hover:bg-black/50' alt="" />
       </div>
       <div className='mt-20'>
         <h1 className='font-bold text-3xl'>Edit Profile</h1> 
@@ -56,9 +66,6 @@ return (
       <p className='text-xl'>Email</p>
       <input type="text" value={data.email} onChange={(e)=>setData("email",e.target.value)} className='border p-2 rounded-md w-xl' />
         {errors.email && <p className='text-red-600'>{errors.email}</p>}
-      <p className='text-xl'>Password</p>
-      <input type="text" value={data.password} onChange={(e)=>setData("password",e.target.value)} className='border p-2 rounded-md w-xl' />
-        {errors.password && <p className='text-red-600'>{errors.password}</p>}
       <div className='flex justify-end my-4 gap-4'>
         <button className='bg-red-600 p-2 cursor-pointer font-bold text-white rounded-md' onClick={()=>window.location.href = "/profile"}>Cancel</button>
       <button type='submit' disabled={processing} className='bg-green-600 cursor-pointer p-2 font-bold text-white rounded-md'>Save</button>

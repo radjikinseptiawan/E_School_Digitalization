@@ -6,17 +6,20 @@ import { usePage } from '@inertiajs/react'
 
 type DataAccount = {
   username:string,
-  clicked : ()=>void
+  clicked : ()=>void,
+  image:{
+    media : string | undefined |  File
+  }
 }
 
-export default function ShortAccountInfo({username,clicked}:DataAccount) {
+export default function ShortAccountInfo({image,username,clicked}:DataAccount) {
   const [isAvailable,setIsAvailable] = useState<boolean>(false)
   const {user_id} = usePage().props
   return (
     <div className="mt-10 sm:mt-20">
       <div className="min-h-96 w-full max-w-2xl mx-auto px-4">
         
-        <DashboardProfile media="userDefaultProfile.jpg" username={username} />
+        <DashboardProfile media={image.media as string} username={username} />
         
         <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-10 justify-center my-10 sm:my-20">
           <DashboardCount title="Kelas Selesai" count={isAvailable ? "6":"0"} />

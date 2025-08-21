@@ -33,6 +33,6 @@ class Profile extends Model
 
      public function user()
     {
-        return $this->hasOne(User::class, "user_id", "user_id");
+        return $this->hasOne(User::class, "user_id", "student_id");
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HandleProfilePage;
 use App\Http\Controllers\HandleUserIdentification;
 use App\Http\Middleware\HandleAuthentication;
 use Illuminate\Support\Facades\Route;
@@ -23,8 +24,8 @@ Route::middleware([HandleAuthentication::class])->group(function(){
     Route::get("galeri",[HandleUserIdentification::class,"sertifikasi"])->name("sertifikasi");
 
     Route::get('profile',[HandleUserIdentification::class,"profile"])->name("profile");
-    Route::get("edit/{id}",[HandleUserIdentification::class,"profileEditShow"]);
-    Route::put("edit-data/{id}",[HandleUserIdentification::class,"profileEdit"]);
+    Route::get("profile-edit/{id}",[HandleProfilePage::class,"showProfileEdit"]);
+    Route::put("profile-edit/{id}",[HandleProfilePage::class,"updateProfileUser"]);
 })->name("main-containt-pages");
 
 require __DIR__.'/settings.php';

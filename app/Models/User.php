@@ -30,6 +30,11 @@ class User extends Authenticatable
         'password',
     ];
 
+
+    public function profile(){
+        return $this->hasOne(Profile::class,"user_id","user_id");
+    }
+    
     protected static function boot(){
         parent::boot();
 
@@ -37,6 +42,15 @@ class User extends Authenticatable
             if(empty($model->user_id)){
                 $model->user_id = (string) Str::uuid();
             }
+        });
+
+
+        static::created(function($user){
+            $user->profile()->create([
+            'domisili' => null,
+            'nomor_telepon' => null,
+            'tanggal_lahir' => null,
+            ]);
         });
     }
 
@@ -50,9 +64,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function student(){
-        return $this->hasOne(Profile::class,"user_id","student_id");
-    }
     /**
      * Get the attributes that should be cast.
      *
