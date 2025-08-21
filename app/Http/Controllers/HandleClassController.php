@@ -9,7 +9,7 @@ class HandleClassController extends Controller
 {
     //
     function createClass(Request $request){
-            try{
+        try{
         $validasi = $request->validate([
         "nama_kelas" => "required|string|max:255",
         "kelas_dimulai" => "required|date",

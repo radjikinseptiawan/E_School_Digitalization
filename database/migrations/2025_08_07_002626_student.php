@@ -11,6 +11,9 @@ return new class extends Migration
         Schema::create('student_info', function (Blueprint $table) {
             $table->uuid("student_id")->primary();
             $table->foreignUuid("user_id")->constrained("users","user_id")->onDelete('cascade');
+            $table->string("nomor_telepon")->nullable();
+            $table->string("domisili")->nullable();
+            $table->string("tanggal_lahir")->nullable();
             $table->timestamps();
         });
 

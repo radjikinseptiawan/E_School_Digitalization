@@ -2,13 +2,16 @@
 import React, { useState } from 'react'
 import DashboardProfile from '../dashboardProfile'
 import DashboardCount from '../../count'
+import { usePage } from '@inertiajs/react'
 
 type DataAccount = {
-  username:string
+  username:string,
+  clicked : ()=>void
 }
 
-export default function ShortAccountInfo({username}:DataAccount) {
+export default function ShortAccountInfo({username,clicked}:DataAccount) {
   const [isAvailable,setIsAvailable] = useState<boolean>(false)
+  const {user_id} = usePage().props
   return (
     <div className="mt-10 sm:mt-20">
       <div className="min-h-96 w-full max-w-2xl mx-auto px-4">
@@ -29,7 +32,7 @@ export default function ShortAccountInfo({username}:DataAccount) {
 
         <div className="flex p-4 sm:p-6 md:p-10 justify-end">
           <button
-            onClick={() => (window.location.href = "/edit")}
+            onClick={clicked}
             className="bg-[#13A936] px-4 sm:px-6 py-2 sm:py-3 rounded-md text-white font-bold text-sm sm:text-base"
           >
             Edit

@@ -9,7 +9,9 @@ interface AppLayoutProps {
 export default ({ children}: AppLayoutProps) => (
     <>
         <Navigation/>
+        <div className='h-screen'>
         {children}
+        </div>
         <Footer/>
     </>
 );
