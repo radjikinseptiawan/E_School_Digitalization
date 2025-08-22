@@ -9,7 +9,7 @@ interface AppLayoutProps {
 export default ({ children}: AppLayoutProps) => (
     <>
         <Navigation/>
-        <div className='h-screen'>
+        <div className='h-screen w-full '>
         {children}
         </div>
         <Footer/>

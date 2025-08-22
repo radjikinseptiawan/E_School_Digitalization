@@ -8,7 +8,7 @@ import AuthLayout from '@/layouts/auth-layout';
 import LoginRegisterInput from '@/components/ui/input/loginRegister';
 import UnsignedNavigation from '@/components/ui/unSignedNavigation';
 import Footer from '@/components/ui/footer';
-import ButtonInfo from '@/components/ui/buttonInfo';
+import ButtonInfo from '@/components/ui/button/buttonInfo';
 import ErrorNotification from '@/components/ux/errorNotification';
 
 export default function ForgotPassword({ status }: { status?: string }) {

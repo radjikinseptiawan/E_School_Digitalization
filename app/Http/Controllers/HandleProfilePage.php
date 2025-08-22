@@ -31,7 +31,7 @@ public function updateProfileUser(Request $request,$id, ServicePhotoService $pho
         "tanggal_lahir"  => "nullable|string",
         "email"          => "required|string|email",
         "nomor_telepon"  => ["nullable","regex:/^(\+62|62|0)8[1-9][0-9]{6,11}$/"],
-        "photo_profile"  => "nullable|image|mimes:jpg,jpeg,png|max:3000"
+        "photo_profile"  => "nullable|image|mimes:jpg,jpeg,png|max:99999"
     ]);
     
     $user->update([
@@ -39,7 +39,12 @@ public function updateProfileUser(Request $request,$id, ServicePhotoService $pho
         "email" => $validasi["email"] ?? $user->email,
     ]);
 
-    $path = $photoService->uploadImage('photo_profile');
+    if($request->hasFile("photo_profile")){
+            $path = $photoService->uploadImage($request->file('photo_profile'),"photo_profile");
+            if($profile && $path){
+                $profile->update(['photo_profile'=>$path]);
+            }
+    }
 
     if($profile){
         $profile->update([

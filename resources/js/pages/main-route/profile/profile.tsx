@@ -15,6 +15,7 @@ export default function ProfilePage() {
   return (
     <AppLayout>
         <Head title='Profile'/>
+        <div className='w-full'>
         <div className='flex flex-col md:flex-row'>
             <ShortAccountInfo username={`${nama_lengkap}`} clicked={() => window.location.href = `/profile-edit/${user_id}`} image={{
           media: profile.photo_profile ? `storage/${profile.photo_profile}` : "/userDefaultProfile.jpg"
@@ -28,6 +29,7 @@ export default function ProfilePage() {
           tanggalLahir:profile?.tanggal_lahir
         }}/>
         </div>
+      </div>
     </AppLayout>
   )
 }

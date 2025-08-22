@@ -4,7 +4,7 @@ import AuthLayout from '@/layouts/auth-layout';
 import AppLayoutUnSigin from '@/layouts/app-layout-unSigin';
 import LoginRegisterInput from '@/components/ui/input/loginRegister';
 import ErrorNotification from '@/components/ux/errorNotification';
-import ButtonInfo from '@/components/ui/buttonInfo';
+import ButtonInfo from '@/components/ui/button/buttonInfo';
 import { LoaderCircle } from 'lucide-react';
 
 

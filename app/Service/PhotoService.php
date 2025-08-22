@@ -1,17 +1,20 @@
 <?php
 namespace App\Service;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\UploadedFile;
+use Illuminat\Support\Facades\Storage;
 class PhotoService{
-    protected $media;
+    /**
+    *@param UploadFile|null $file
+    *@param string $storagePath
+    *@return string|null 
+    
+    */
 
-    public function __construct(Request $media) {
-        $this->media = $media;
-    }
-
-    public function uploadImage(String $inputFile){
-        if ($this->media->hasFile($inputFile)) {
-            return $this->media->file($inputFile)->store('photo_profile',"public");
+    public function uploadImage(UploadedFile $file,String $storagePath){
+        if ($file) {
+            $filename = uniqid() . "." . $file->getClientOriginalExtension();
+            return $file->storeAs($storagePath,$filename,"public");
         }   
      return null;
     }

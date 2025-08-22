@@ -6,7 +6,7 @@ import LoginRegisterInput from '@/components/ui/input/loginRegister';
 import AppLayoutUnSigin from '@/layouts/app-layout-unSigin';
 import ErrorNotification from '@/components/ux/errorNotification';
 import React from 'react';
-import ButtonInfo from '@/components/ui/buttonInfo';
+import ButtonInfo from '@/components/ui/button/buttonInfo';
 import { LoaderCircle } from 'lucide-react';
 
 

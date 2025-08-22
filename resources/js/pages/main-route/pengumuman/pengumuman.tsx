@@ -12,7 +12,7 @@ export default function pengumuman() {
       <AppLayout>
         <Head title='Pengumuman'/>
         <div className='mt-20 flex justify-center'>
-          <div className='h-screen w-1/2 flex-col flex gap-4 shadow-2xl p-2'>
+          <div className='h-screen w-xl flex-col flex gap-4 shadow-2xl p-2'>
 
           {
             isAvailable ? 

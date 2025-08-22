@@ -25,7 +25,7 @@ export default function ProfileContaint({action}:DataAction) {
     },[width])
     console.log(width)
     return (
-    <div className="mt-18 overflow-y-scroll w-full h-screen border-[#EEEEEE] border-2 p-4 md:p-8 shadow-2xl rounded-2xl">
+    <div className="my-20 overflow-y-scroll w-full h-screen border-[#EEEEEE] border-2 p-4 md:p-8 shadow-2xl rounded-2xl">
       <BiodataSection username={action.username} tanggalLahir={action.tanggalLahir} email={action.email} nomorTelepon={action.nomorTelepon} domisili={action.domisili} tanggalBergabung={action.tanggalBergabung}/>
       <LastActivity/>
       <LearningScore/>
