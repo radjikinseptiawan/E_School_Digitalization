@@ -6,7 +6,7 @@ Website edukasi modern berbasis teknologi **Laravel** (Backend) dan **ReactJS** 
 
 ## 🚀 Fitur Utama
 
--   **Manajemen Profil Pengguna**: Memungkinkan pengguna untuk mengelola data pribadi seperti informasi kontak dan tanggal lahir.
+-   **Manajemen Profil Pengguna**: Memungkinkan pengguna untuk mengelola data pribadi seperti informasi kontak dan tanggal lahir serta photo profile.
 -   **Dashboard Interaktif**: Halaman utama yang menampilkan ringkasan informasi dan kelas yang diikuti.
 -   **Sistem Kelas**: Fungsionalitas untuk mengelola dan mengakses materi kelas.
 -   **Sistem Peringatan**: Pengguna akan mendapatkan pemberitahuan penting.
