@@ -22,7 +22,6 @@ public function showProfileEdit($id)
 }
 
 public function updateProfileUser(Request $request,$id, ServicePhotoService $photoService){
-    try{
     $user = User::where("user_id",$id)->firstorFail();
     $profile = Profile::where("user_id",$user->user_id)->first();
 
@@ -54,12 +53,6 @@ public function updateProfileUser(Request $request,$id, ServicePhotoService $pho
         $profile->update(['photo_profile' => $path]);
     }
     return redirect()->route('profile');
-        
-    }catch(\Exception $e){
-        return back()->withErrors([
-            "messagedata" => $e->getMessage()
-        ]);
-    }
 }
 
 }

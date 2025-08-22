@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import AppLayout from '@/layouts/app-layout';
 import { Head, useForm, usePage } from '@inertiajs/react';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react'; // <-- Tambahkan 'useEffect'
 import Cropper from 'react-easy-crop';
 
 type ProfileForm = {
@@ -19,7 +19,7 @@ export default function ProfileEdit() {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [imageSrc, setImagSrc] = useState(null);
+  const [imageSrc, setImageSrc] = useState<string | null>(null); // <-- Ubah 'setImagSrc' menjadi 'setImageSrc' dan tambahkan tipe data
 
   const refId = useRef<HTMLInputElement | null>(null);
   const { props } = usePage<any>();
@@ -34,6 +34,14 @@ export default function ProfileEdit() {
     email: props.data.email || '',
     photo_profile: null,
   });
+
+  useEffect(() => {
+    if (data.photo_profile) {
+      setImageSrc(URL.createObjectURL(data.photo_profile));
+    } else if (user.photo_profile) {
+      setImageSrc(`/storage/${user.photo_profile}`);
+    }
+  }, [data.photo_profile, user.photo_profile]);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,8 +83,8 @@ export default function ProfileEdit() {
               />
               <img
                 src={
-                  data.photo_profile
-                    ? URL.createObjectURL(data.photo_profile)
+                  imageSrc
+                    ? imageSrc
                     : '/userDefaultProfile.jpg'
                 }
                 width={200}

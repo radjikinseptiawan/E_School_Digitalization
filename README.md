@@ -23,15 +23,13 @@ Website edukasi modern berbasis teknologi **Laravel** (Backend) dan **ReactJS** 
 
 ---
 
-## 📝 Log Perubahan (21 Agustus 2025)
+## 📝 Log Perubahan (22 Agustus 2025)
 
 Berikut adalah ringkasan pembaruan terbaru yang diterapkan pada aplikasi:
 
--   **Sistem Profil Otomatis**: Menambahkan logika untuk memastikan setiap pengguna baru memiliki entri di tabel `student_info` secara otomatis.
--   **Pembaruan Profil**: Mengaktifkan fungsionalitas bagi pengguna untuk memperbarui data profil mereka (misalnya, nama, email, domisili, dan nomor telepon).
--   **Input Tanggal Lahir**: Menambahkan field `tanggal_lahir` dan mengintegrasikan fungsionalitasnya untuk pembaruan profil.
--   **Interaksi UI**: Mengimplementasikan fitur di mana pengguna dapat mengklik area profil untuk membuka jendela pemilihan file.
--   **Perbaikan Bug**: Memperbaiki masalah di mana data profil tidak ditampilkan saat pengguna baru membuat akun.
+-   **Sistem Profil**: Pengguna bisa menambahkan photo profile namun, ukuran dari photo belum bisa ditentukan oleh pengguna atau sistem.
+-   **Validasi di input nomor telepon**: menambahkan sistem validasi pada nomor telepon menggunakan REGEX
+-   **Folder service**: membuat folder `Service` untuk keperluan fitur fitur yang mungkin akan selalu di gunakan untuk kedepan nya.
 
 ---
 
@@ -39,7 +37,7 @@ Berikut adalah ringkasan pembaruan terbaru yang diterapkan pada aplikasi:
 
 1.  **Clone repositori:**
     ```bash
-    git clone [https://github.com/nama-pengguna/nama-repo.git](https://github.com/nama-pengguna/nama-repo.git)
+    git clone [https://github.com/radjikinseptiwan/Eschool-digitalization.git](https://github.com/radjikinseptiawan/Eschool-digitalization.git)
     cd nama-repo
     ```
 2.  **Instal dependensi Laravel:**
