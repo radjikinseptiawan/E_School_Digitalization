@@ -18,6 +18,7 @@ class Profile extends Model
         "user_id",
         "domisili",
         "nomor_telepon",
+        "photo_profile",
         "tanggal_lahir"
     ];
     

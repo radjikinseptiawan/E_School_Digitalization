@@ -25,7 +25,7 @@ Route::middleware([HandleAuthentication::class])->group(function(){
 
     Route::get('profile',[HandleUserIdentification::class,"profile"])->name("profile");
     Route::get("profile-edit/{id}",[HandleProfilePage::class,"showProfileEdit"]);
-    Route::put("profile-edit/{id}",[HandleProfilePage::class,"updateProfileUser"]);
+    Route::post("profile-edit/{id}",[HandleProfilePage::class,"updateProfileUser"])->name("photo.update");
 })->name("main-containt-pages");
 
 require __DIR__.'/settings.php';

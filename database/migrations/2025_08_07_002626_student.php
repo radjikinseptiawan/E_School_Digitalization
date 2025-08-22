@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string("nomor_telepon")->nullable();
             $table->string("domisili")->nullable();
             $table->string("tanggal_lahir")->nullable();
+            $table->binary("photo_profile")->nullable();
             $table->timestamps();
         });
 

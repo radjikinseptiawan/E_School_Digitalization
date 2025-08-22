@@ -3,8 +3,6 @@ import ShortAccountInfo from '@/components/ui/profile/profilePage'
 import ProfileContaint from '@/components/ui/profile/profilePage/containtProfile'
 import AppLayout from '@/layouts/app-layout'
 import { Head, usePage } from '@inertiajs/react'
-import React from 'react'
-
 export default function ProfilePage() {
   const {profile,email,nama_lengkap,tanggalBergabung,user_id} = usePage<any>().props
   console.log({
@@ -19,7 +17,7 @@ export default function ProfilePage() {
         <Head title='Profile'/>
         <div className='flex flex-col md:flex-row'>
             <ShortAccountInfo username={`${nama_lengkap}`} clicked={() => window.location.href = `/profile-edit/${user_id}`} image={{
-          media: "/userDefaultProfile.jpg"
+          media: profile.photo_profile ? `storage/${profile.photo_profile}` : "/userDefaultProfile.jpg"
         }}/>   
             <ProfileContaint action={{
           email: email,
