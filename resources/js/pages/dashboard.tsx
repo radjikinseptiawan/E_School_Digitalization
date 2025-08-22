@@ -8,6 +8,15 @@ import { Head, usePage } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
 
+type ProfileForm = {
+  nomor_telepon: string;
+  domisili: string;
+  tanggal_lahir: string;
+  nama_lengkap: string;
+  email: string;
+  photo_profile: File | null;
+};
+
 type DashboardCardType = {
   nama_kelas : string;
   level: string;
@@ -15,15 +24,16 @@ type DashboardCardType = {
   kelas_dimulai:Date;
   kelas_diakhiri:Date;
   penyelenggara_kelas:string;
+  profile:ProfileForm
 }
 
 export default function dashboard() {
-  const {kelas, nama_lengkap} = usePage().props as unknown as {
+  const {kelas, nama_lengkap,profile} = usePage().props as unknown as {
     kelas : DashboardCardType[],
-    nama_lengkap: string
+    nama_lengkap: string,
+    profile:ProfileForm
   }
   const isAvailable = kelas && kelas.length  > 0;
-  console.log(kelas)
   return (
     <AppLayout>
       <Head title="Dashboard"/>
@@ -59,7 +69,7 @@ export default function dashboard() {
           <h1 className="text-lg sm:text-xl md:text-2xl font-bold mb-4">Profile</h1>
           <div className="border-[#EEEEEE] rounded-2xl border-2 h-auto md:h-[91%]">
             
-            <DashboardProfile media="userDefaultProfile.jpg" username={`${nama_lengkap}`} />
+            <DashboardProfile media={profile.photo_profile ? `/storage/${profile.photo_profile}`: "/userDefaultProfile.jpg"} username={`${nama_lengkap}`} />
 
             <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-10 justify-center my-8 md:my-12">
               <DashboardCount title="Kelas Selesai" count={isAvailable ? "6": "0"} />

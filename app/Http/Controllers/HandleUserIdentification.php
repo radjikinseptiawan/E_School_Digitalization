@@ -17,10 +17,12 @@ class HandleUserIdentification extends Controller
     function dashboard(){
         $data = Auth::user();
         $kelas = Kelas::take(3)->get();
+        $profile = Profile::where("user_id",$data->user_id)->firstorFail();
         return Inertia::render("dashboard",[
             "nama_lengkap" => $data->nama_lengkap,
             "email" => $data->email,
-            "kelas" => $kelas
+            "kelas" => $kelas,
+            "profile" => $profile
         ]);
     }
 

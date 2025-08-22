@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 Route::middleware([HandleAuthentication::class])->group(function(){
     
-    Route::get('dashboard',[HandleUserIdentification::class,"dashboard"])->name('dashboard');
+    Route::get('dashboard/',[HandleUserIdentification::class,"dashboard"])->name('dashboard');
     Route::get('class-lobby/{id}',[HandleUserIdentification::class,"classLobby"])->name("classLobby");
 
     Route::get('materi',[HandleUserIdentification::class,"materi"])->name("materi");
