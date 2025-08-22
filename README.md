@@ -30,6 +30,7 @@ Berikut adalah ringkasan pembaruan terbaru yang diterapkan pada aplikasi:
 -   **Sistem Profil**: Pengguna bisa menambahkan photo profile namun, ukuran dari photo belum bisa ditentukan oleh pengguna atau sistem.
 -   **Validasi di input nomor telepon**: menambahkan sistem validasi pada nomor telepon menggunakan REGEX
 -   **Folder service**: membuat folder `Service` untuk keperluan fitur fitur yang mungkin akan selalu di gunakan untuk kedepan nya.
+-   **Membuat Fitur Crop**: membuat fitur crop untuk photo profile dengan `react-easy-crop`
 
 ---
 
