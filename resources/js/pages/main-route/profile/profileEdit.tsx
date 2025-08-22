@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/rules-of-hooks */
+import ButtonCropper from '@/components/ui/button/buttonCropper';
 import ProfileEditButton from '@/components/ui/button/profileEditButton';
+import PhotoProfileInput from '@/components/ui/input/photoProfileInput';
 import Input from '@/components/ui/input/profileEdit';
 import AppLayout from '@/layouts/app-layout';
 import { getCroppedImg } from '@/utils/cropImage';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import React, { useRef, useState, useEffect } from 'react'; // <-- Tambahkan 'useEffect'
 import Cropper from 'react-easy-crop';
-import { text } from 'stream/consumers';
 
 type ProfileForm = {
   nomor_telepon: string;
@@ -25,7 +26,6 @@ export default function ProfileEdit() {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [imageSrc, setImageSrc] = useState<string | null>(null); // <-- Ubah 'setImagSrc' menjadi 'setImageSrc' dan tambahkan tipe data
   const [showCropper,setShowCropper] = useState(false)
-  const [cropped,setCroppedd] = useState('')
   const refId = useRef<HTMLInputElement | null>(null);
   const { props } = usePage<any>();
 
@@ -109,28 +109,13 @@ const handleCrop = async () => {
           encType="multipart/form-data"
         >
           <div className="flex flex-col my-24 gap-8 md:flex-row md:justify-center">
-              <div onClick={handleDivClick}>
-              <input
-                accept="image/jpg, image/png, image/jpeg"
-                type="file"
-                name="photo_profile"
-                className="hidden"
-                ref={refId}
-                onChange={onFileChange}
-              />
-              <img
-                src={
-                  imageSrc
-                    ? imageSrc
-                    : '/userDefaultProfile.jpg'
-                }
-                width={200}
-                height={200}
-                className="rounded-full overflow-hidden mt-20 cursor-pointer hover:bg-black/50"
-                alt="Foto Profil"
-              />
-            </div>
-
+          
+          
+            <PhotoProfileInput 
+            handleDivClicks={handleDivClick} 
+            refsId={refId} 
+            fileChange={onFileChange} imageSrco={imageSrc ? imageSrc : '/userDefaultProfile.jpg'}/>
+          
           {showCropper && (
     <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50">
         <div className="relative w-[80vw] h-[80vh] sm:w-[50vw] sm:h-[50vh]">
@@ -143,10 +128,10 @@ const handleCrop = async () => {
                 onCropChange={setCrop}
                 onZoomChange={setZoom}
             />
-            <div className="absolute bottom-4 right-4 flex gap-2">
-                <button type="button" onClick={() => setShowCropper(false)} className='bg-gray-400 text-white p-2 rounded'>Cancel</button>
-                <button type="button" onClick={handleCrop} className='bg-amber-500 text-white p-2 rounded'>Oke</button>
-            </div>
+            <ButtonCropper action={{
+                    cancel: ()=>setShowCropper(false),
+                    ok: handleCrop}}/>
+            
         </div>
     </div>
 )}
